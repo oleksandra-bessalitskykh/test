@@ -37,12 +37,26 @@ const CustomForm = () => {
         formIsValid = true;
     }
 
-    const basicFormSubmissionHandler = event => {
+    const customFormSubmissionHandler = event => {
         event.preventDefault();
 
-        if (!enteredNameValueIsValid || enteredEmailValue  || enteredPhoneValue) {
-            return;
-        }
+        fetch('http://localhost:9070', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                name: enteredNameValue,
+                phone: enteredPhoneValue,
+                email: enteredEmailValue,
+            }),
+        }).catch(() => {
+            console.log('userdata', {
+                name: enteredNameValue,
+                phone: enteredPhoneValue,
+                email: enteredEmailValue,
+            });
+        });
 
         resetEnteredNameInput();
         resetEnteredPhoneInput();
@@ -54,48 +68,49 @@ const CustomForm = () => {
     const emailInputClasses = enteredEmailInputError ? 'custom-form__control--invalid' : 'custom-form__control';
 
     return (
-      <div className='custom-form-wrapper'>
-        <form onInput={basicFormSubmissionHandler} className='custom-form'>
-            <h2 className='custom-form__title'>Запишитесь <span className='custom-form__text'>бесплатно</span> и получите подарок</h2>
-            <div className='custom-form__group'>
-                <div className={nameInputClasses}>
+        <div className='custom-form-wrapper'>
+            <form onSubmit={customFormSubmissionHandler} className='custom-form'>
+                <h2 className='custom-form__title'>Запишитесь <span className='custom-form__text'>бесплатно</span> и
+                    получите подарок</h2>
+                <div className='custom-form__group'>
+                    <div className={nameInputClasses}>
+                        <input
+                            type='text'
+                            id='name'
+                            placeholder='Ваше имя и фамилия'
+                            value={enteredNameValue}
+                            onChange={enteredNameChangeHandler}
+                            onBlur={enteredNameBlurHandler}
+                        />
+                        {enteredNameInputError && <p>Пожалуйста, введите действительные имя и фамилию.</p>}
+                    </div>
+                    <div className={phoneInputClasses}>
+                        <PhoneInput
+                            placeholder='Ваш номер телефона'
+                            value={enteredPhoneValue}
+                            onChange={enteredPhoneChangeHandler}
+                            onBlur={enteredPhoneBlurHandler}
+                        />
+                        {enteredPhoneInputError && <p>Пожалуйста, введите действительный номер телефона.</p>}
+                    </div>
+                </div>
+                <div className={emailInputClasses}>
                     <input
-                        type='text'
+                        type='email'
                         id='name'
-                        placeholder='Ваше имя и фамилия'
-                        value={enteredNameValue}
-                        onChange={enteredNameChangeHandler}
-                        onBlur={enteredNameBlurHandler}
+                        placeholder='Ваш email'
+                        value={enteredEmailValue}
+                        onChange={enteredEmailChangeHandler}
+                        onBlur={enteredEmailBlurHandler}
                     />
-                    {enteredNameInputError && <p>Пожалуйста, введите действительные имя и фамилию.</p>}
+                    {enteredEmailInputError && <p>Пожалуйста, введите действительную электронную почту.</p>}
                 </div>
-                <div className={phoneInputClasses}>
-                    <PhoneInput
-                        placeholder='Ваш номер телефона'
-                        value={enteredPhoneValue}
-                        onChange={enteredPhoneChangeHandler}
-                        onBlur={enteredPhoneBlurHandler}
-                    />
-                    {enteredPhoneInputError && <p>Пожалуйста, введите действительный номер телефона.</p>}
-                </div>
-            </div>
-            <div className={emailInputClasses}>
-                <input
-                    type='email'
-                    id='name'
-                    placeholder='Ваш email'
-                    value={enteredEmailValue}
-                    onChange={enteredEmailChangeHandler}
-                    onBlur={enteredEmailBlurHandler}
-                />
-                {enteredEmailInputError && <p>Пожалуйста, введите действительную электронную почту.</p>}
-            </div>
-            <button className='custom-form__button' disabled={!formIsValid}>Записаться бесплатно</button>
-            <p className='custom-form__description'>
-                Нажимая на кнопку я согашаюсь с политикой конфидециальности
-            </p>
-        </form>
-      </div>
+                <button className='custom-form__button' type='submit' disabled={!formIsValid}>Записаться бесплатно</button>
+                <p className='custom-form__description'>
+                    Нажимая на кнопку я согашаюсь с политикой конфидециальности
+                </p>
+            </form>
+        </div>
     );
 };
 

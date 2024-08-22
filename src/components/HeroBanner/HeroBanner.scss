@@ -25,6 +25,7 @@
         position: relative;
         display: flex;
         align-items: center;
+        justify-content: center;
         padding: 0 64px;
         box-shadow: none;
         border-radius: 5px;
@@ -76,24 +77,33 @@
         font-family: 'Gilroy', serif;
         display: flex;
         align-items: center;
-        flex-direction: column;
-
+        justify-content: space-between;
 
         @include media("medium") {
             flex-direction: row;
             align-items: flex-start;
+            justify-content: center;
             height: 40px;
         }
 
         &--highlighted {
-
             position: relative;
             display: block;
             text-transform: uppercase;
             z-index: 1;
-            font-size: 24px;
-            padding: 8px 46px;
+            font-size: 16px;
+            padding: 10px;
             text-wrap: nowrap;
+            font-weight: 800;
+            line-height: 20px;
+            text-align: left;
+            margin-right: 22px;
+
+            @include media('medium') {
+                font-size: 23px;
+                line-height: 28.75px;
+                margin-right: 0;
+            }
 
             &::after {
                 content: "";
@@ -109,8 +119,17 @@
 
         .hero-banner__text-p {
             margin-left: 12px;
-            line-height: 48px;
-            font-size: 24px;
+            text-align: left;
+            font-size: 15px;
+            font-weight: 600;
+            line-height: 18.38px;
+
+            @include media('medium') {
+                font-size: 22px;
+                font-weight: 600;
+                line-height: 26.95px;
+                text-align: left;
+            }
         }
     }
 
@@ -123,9 +142,14 @@
         }
 
         &__text {
-            font-size: 20px;
-            line-height: 28px;
+            font-size: 18px;
             font-weight: 400;
+            line-height: 27px;
+            text-align: left;
+
+            &--highlighted {
+                font-weight: 600;
+            }
         }
 
         &__authors {
@@ -137,8 +161,20 @@
             align-items: center;
             padding-bottom: 20px;
 
-            &-name{
+            &-name {
                 text-transform: uppercase;
+                padding-bottom: 4px;
+
+                &--highlighted {
+                    color: #4252D1;
+                }
+            }
+
+            &-text {
+                font-size: 14px;
+                font-weight: 700;
+                line-height: 21px;
+                text-align: left;
                 padding-bottom: 4px;
             }
 
@@ -148,9 +184,18 @@
             }
 
             &-exp {
-                font-size: 14px;
+                font-size: 12px;
+                font-weight: 400;
+                line-height: 19px;
+                text-align: left;
+            }
+
+            &-additional-text {
+                font-size: 12px;
+                font-weight: 400;
+                line-height: 18px;
+                text-align: left;
             }
         }
-
     }
 }
