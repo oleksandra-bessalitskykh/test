@@ -70,44 +70,44 @@ const CustomForm = () => {
     return (
         <div className='custom-form-wrapper'>
             <form onSubmit={customFormSubmissionHandler} className='custom-form'>
-                <h2 className='custom-form__title'>Запишитесь <span className='custom-form__text'>бесплатно</span> и
-                    получите подарок</h2>
+                <h2 className='custom-form__title'>Sign up for <span className='custom-form__text'>free</span> and
+                    get a gift</h2>
                 <div className='custom-form__group'>
                     <div className={nameInputClasses}>
                         <input
                             type='text'
                             id='name'
-                            placeholder='Ваше имя и фамилия'
+                            placeholder='Name and Lastname'
                             value={enteredNameValue}
                             onChange={enteredNameChangeHandler}
                             onBlur={enteredNameBlurHandler}
                         />
-                        {enteredNameInputError && <p>Пожалуйста, введите действительные имя и фамилию.</p>}
+                        {enteredNameInputError && <p>Please enter a valid data.</p>}
                     </div>
                     <div className={phoneInputClasses}>
                         <PhoneInput
-                            placeholder='Ваш номер телефона'
+                            placeholder='Number'
                             value={enteredPhoneValue}
                             onChange={enteredPhoneChangeHandler}
                             onBlur={enteredPhoneBlurHandler}
                         />
-                        {enteredPhoneInputError && <p>Пожалуйста, введите действительный номер телефона.</p>}
+                        {enteredPhoneInputError && <p>Please enter a valid number.</p>}
                     </div>
                 </div>
                 <div className={emailInputClasses}>
                     <input
                         type='email'
                         id='name'
-                        placeholder='Ваш email'
+                        placeholder='Email'
                         value={enteredEmailValue}
                         onChange={enteredEmailChangeHandler}
                         onBlur={enteredEmailBlurHandler}
                     />
-                    {enteredEmailInputError && <p>Пожалуйста, введите действительную электронную почту.</p>}
+                    {enteredEmailInputError && <p>Please enter a valid email.</p>}
                 </div>
-                <button className='custom-form__button' type='submit' disabled={!formIsValid}>Записаться бесплатно</button>
+                <button className='custom-form__button' type='submit' disabled={!formIsValid}>Sign up for free</button>
                 <p className='custom-form__description'>
-                    Нажимая на кнопку я согашаюсь с политикой конфидециальности
+                    By clicking the button I agree to the privacy policy
                 </p>
             </form>
         </div>

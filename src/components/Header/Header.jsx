@@ -10,10 +10,10 @@ function Header() {
                 <img src={headerLogo} className='header__nav__logo' alt='Logo Powercode Academy'/>
                 <div className='header__details'>
                     <div className='header__details__date'>
-                        <img src={calendarIcon} alt="calendar icon"/> 28 декабря
+                        <img src={calendarIcon} alt="calendar icon"/> 28 December
                     </div>
                     <div className='header__details__time'>
-                        <img src={timeIcon} alt="calendar icon"/> 3,5 часа
+                        <img src={timeIcon} alt="calendar icon"/> 3,5 hours
                     </div>
                 </div>
             </nav>
